@@ -6,6 +6,7 @@
   "repository": "https://github.com/marsanla/the-list",
   "license": "MIT",
   "devDependencies": {
+    "bower": "*",
     "connect-livereload": "~0.5.3",
     "grunt": "~0.4.4",
     "grunt-cli": "*",
