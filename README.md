@@ -1,5 +1,3 @@
-[![Build Status](https://travis-ci.org/marsanla/the-list.svg)](https://travis-ci.org/marsanla/the-list)
-
 #The JavaScript Challenge
 
 ## Client Side Address Book
