@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en" ng-app="theList">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>The List</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no"/>
+
+    <link rel="apple-touch-icon" sizes="57x57" href="/assets/images/icons/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/assets/images/icons/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/assets/images/icons/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/assets/images/icons/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/assets/images/icons/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/assets/images/icons/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/assets/images/icons/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/assets/images/icons/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/assets/images/icons/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/assets/images/icons/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assets/images/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/assets/images/icons/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assets/images/icons/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/assets/images/icons/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+
+    <link rel='stylesheet' href='http://fonts.googleapis.com/css?family=Roboto:400,500,700,400italic'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+    <!-- build:css(app) assets/vendor.css -->
+    <!-- bower:css -->
+    <link rel="stylesheet" href="bower_components/angular-material/angular-material.css" />
+    <link rel="stylesheet" href="bower_components/angular-editable-text/dist/angular-editable-text.css" />
+    <!-- endbower -->
+    <!-- endbuild -->
+    <!-- build:css({.tmp,app}) assets/app.css -->
+    <!-- injector:css -->
+    <link rel="stylesheet" href="assets/app.css">
+    <!-- endinjector -->
+    <!-- endbuild -->
+
+</head>
+
+<body layout="column" layout-fill ng-cloak ng-controller="UserController as u">
+
+<!--[if lt IE 7]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<noscript>
+    <div class="noscript">
+        <img src="assets/images/logo.svg" title="The List" alt="The List">
+
+        <p>Sorry, your browser does not support JavaScript and we can not display the application. Please enable
+            javascript or <a href="mailto:hello@the-list.com" title="Contact Us">contact us</a>.</p>
+    </div>
+</noscript>
+
+<!-- Application content -->
+<top-nav title="The List"
+         toggle-list="u.toggleList"></top-nav>
+
+<div flex layout="row" layout-fill>
+    <md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2"
+                ng-cloak
+                md-component-id="left"
+                md-is-locked-open="$mdMedia('gt-sm')">
+        <user-list users="u.users"
+                   on-select="u.selectUser"></user-list>
+    </md-sidenav>
+
+    <div flex layout="column" layout-fill tabIndex="-1" role="main" class="md-whiteframe-z2 relative">
+        <user-add></user-add>
+
+        <md-content flex id="content">
+            <user-details on-save="u.saveUsers"
+                          on-delete="u.deleteUser"
+                          user="u.selected"></user-details>
+        </md-content>
+    </div>
+</div>
+
+<!-- build:js({app,node_modules}) assets/vendor.js -->
+<script src="bower_components/angular/angular.js"></script>
+<!-- bower:js -->
+<script src="bower_components/angular-animate/angular-animate.js"></script>
+<script src="bower_components/angular-aria/angular-aria.js"></script>
+<script src="bower_components/angular-material/angular-material.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+<script src="bower_components/angular-gravatar/build/angular-gravatar.js"></script>
+<script src="bower_components/angular-editable-text/dist/angular-editable-text.js"></script>
+<script src="bower_components/lodash/lodash.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+<!-- build:js({.tmp,app}) assets/app.js -->
+<script src="app.js"></script>
+<!-- injector:js -->
+<script src="components/lodash/lodash.service.js"></script>
+<script src="components/topNav/topNav.directive.js"></script>
+<script src="components/userAdd/userAdd.directive.js"></script>
+<script src="components/userDetails/userDetails.directive.js"></script>
+<script src="components/userList/userList.directive.js"></script>
+<script src="src/users/User.js"></script>
+<script src="src/users/UserController.js"></script>
+<script src="src/users/UserService.js"></script>
+<!-- endinjector -->
+<!-- endbuild -->
+</body>
+</html>

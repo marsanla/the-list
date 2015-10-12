@@ -1,0 +1,10 @@
+logs/*
+!.gitkeep
+node_modules/
+dist/
+app/bower_components/
+coverage/
+.tmp/
+.DS_Store
+.idea
+app/jspm_packages

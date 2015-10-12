@@ -1,0 +1,160 @@
+.avatar {
+  position: relative;
+  width: 128px;
+  height: 128px;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  display: inline-block;
+  overflow: hidden;
+  margin: 0px;
+  vertical-align: middle;
+  zoom: 0.70;
+  transform: translateZ(0);
+  -webkit-transform: scale(0.7);
+  -moz-transform: scale(0.7);
+}
+.md-input-invalid .material-icons {
+  color: #f44336;
+}
+html,
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 14px;
+  height: 100%;
+  margin: 0px;
+  padding: 0px;
+}
+[ng\:cloak],
+[ng-cloak],
+[data-ng-cloak],
+[x-ng-cloak],
+.ng-cloak,
+.x-ng-cloak {
+  display: none !important;
+}
+/* Primary content area */
+#content {
+  overflow: hidden;
+}
+#content {
+  background: #eee;
+  padding-left: 30px;
+  padding-right: 30px;
+  padding-top: 30px;
+}
+/* Utils */
+.content-wrapper {
+  position: relative;
+}
+md-toolbar h1 {
+  font-size: 1.250em;
+  font-weight: 400;
+}
+.gray {
+  color: #cccccc !important;
+}
+.top-nav h1 {
+  margin: auto;
+}
+.top-nav md-icon + h1 {
+  margin-left: 7px;
+}
+.user-add form {
+  min-width: 320px;
+}
+.user-add form .material-icons {
+  color: #eee;
+}
+.user-add form .md-input-invalid .material-icons {
+  color: #f44336;
+}
+.user-add form md-dialog-content {
+  padding: 10px 30px 10px 20px;
+}
+.user-details {
+  background: #fff;
+}
+.user-details h2 {
+  font-size: 25px;
+  margin-bottom: 5px;
+}
+.user-details .email {
+  margin-top: 0px;
+}
+.user-details .is-placeholder {
+  color: #dddddd;
+}
+.user-details .editing input {
+  max-width: 500px;
+}
+.user-details .md-avatar {
+  border-radius: 75%;
+}
+.user-details .md-button.contact {
+  background-color: transparent;
+  border: none;
+  width: 48px;
+  height: 48px;
+}
+.user-details .md-button.contact > md-icon {
+  fill: black;
+  width: 36px;
+  height: 36px;
+}
+.user-details .md-button.contact:active > md-icon {
+  background-color: #dadada;
+  border-radius: 75%;
+  padding: 4px;
+  transition: all 100ms ease-out 30ms;
+}
+.user-details md-button.menuBtn > md-icon {
+  fill: white;
+  width: 24px;
+  height: 24px;
+}
+.user-details img {
+  display: block;
+  height: auto;
+  max-width: 500px;
+}
+.user-details .user-header {
+  padding: 30px 30px 15px;
+}
+.user-details .user-info {
+  padding: 15px 30px 30px;
+}
+.user-details .user-info .user-info-element {
+  padding: 10px 5px;
+}
+.user-details .user-info .user-info-element md-icon {
+  color: #bbbbbb;
+}
+.details-empty {
+  color: #bbbbbb;
+  margin-top: 20px;
+}
+.details-empty md-icon {
+  color: #bbbbbb;
+}
+.user-list md-input-container {
+  padding-bottom: 0px;
+}
+.user-list md-input-container.md-input-focused input {
+  padding-bottom: 4px;
+}
+.user-list md-input-container label {
+  display: none;
+}
+.user-list md-input-container input {
+  padding: 5px 9px;
+}
+.user-list .selected {
+  color: #03a9f4;
+}
+.user-list .empty {
+  color: #cccccc;
+  margin-top: 20px;
+}
+.user-list .empty md-icon {
+  color: #cccccc;
+}
