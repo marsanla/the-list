@@ -43,7 +43,7 @@
 
 </head>
 
-<body layout="column" layout-fill ng-cloak ng-controller="UserController as u">
+<body layout="column" layout-fill>
 
 <!--[if lt IE 7]>
 <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
@@ -60,28 +60,7 @@
 </noscript>
 
 <!-- Application content -->
-<top-nav title="The List"
-         toggle-list="u.toggleList"></top-nav>
-
-<div flex layout="row" layout-fill>
-    <md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2"
-                ng-cloak
-                md-component-id="left"
-                md-is-locked-open="$mdMedia('gt-sm')">
-        <user-list users="u.users"
-                   on-select="u.selectUser"></user-list>
-    </md-sidenav>
-
-    <div flex layout="column" layout-fill tabIndex="-1" role="main" class="md-whiteframe-z2 relative">
-        <user-add></user-add>
-
-        <md-content flex id="content">
-            <user-details on-save="u.saveUsers"
-                          on-delete="u.deleteUser"
-                          user="u.selected"></user-details>
-        </md-content>
-    </div>
-</div>
+<div ui-view ng-cloak autoscroll="true"></div>
 
 <!-- build:js({app,node_modules}) assets/vendor.js -->
 <script src="bower_components/angular/angular.js"></script>
@@ -95,6 +74,7 @@
 <script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
 <script src="bower_components/angular-gravatar/build/angular-gravatar.js"></script>
 <script src="bower_components/angular-editable-text/dist/angular-editable-text.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 <script src="bower_components/lodash/lodash.js"></script>
 <!-- endbower -->
 <!-- endbuild -->
@@ -102,14 +82,14 @@
 <!-- build:js({.tmp,app}) assets/app.js -->
 <script src="app.js"></script>
 <!-- injector:js -->
-<script src="components/lodash/lodash.service.js"></script>
-<script src="components/topNav/topNav.directive.js"></script>
-<script src="components/userAdd/userAdd.directive.js"></script>
-<script src="components/userDetails/userDetails.directive.js"></script>
-<script src="components/userList/userList.directive.js"></script>
-<script src="src/users/User.js"></script>
-<script src="src/users/UserController.js"></script>
-<script src="src/users/UserService.js"></script>
+<script src="components/users/User.js"></script>
+<script src="components/users/UserController.js"></script>
+<script src="components/users/UserService.js"></script>
+<script src="shared/libraries/lodash/lodash.service.js"></script>
+<script src="shared/topNav/topNav.directive.js"></script>
+<script src="shared/userAdd/userAdd.directive.js"></script>
+<script src="shared/userDetails/userDetails.directive.js"></script>
+<script src="shared/userList/userList.directive.js"></script>
 <!-- endinjector -->
 <!-- endbuild -->
 </body>

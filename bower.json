@@ -16,6 +16,7 @@
     "angular-local-storage": "*",
     "angular-gravatar": "~0.4.1",
     "angular-editable-text": "*",
+    "angular-ui-router": "*",
     "lodash": "~3.7.0"
   },
   "devDependencies": {

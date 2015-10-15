@@ -11,6 +11,7 @@ describe('Directive: userList', function () {
         scope = $rootScope.$new();
     }));
 
+    // Create a simple test
     it('should show empty message', inject(function ($compile) {
         element = angular.element('<user-list></user-list>');
         element = $compile(element)(scope);
@@ -18,6 +19,7 @@ describe('Directive: userList', function () {
         expect(element.find('p').text()).toBe('Upps, there aren\'t contacts.');
     }));
 
+    // Create a simple test
     it('should get list of users', inject(function ($compile) {
 
         element = angular.element('<user-list users="users"></user-list>');

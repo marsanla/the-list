@@ -23,35 +23,35 @@ module.exports = function (grunt) {
         watch: {
             injectJS: {
                 files: [
-                    '<%= config.app %>/{src,components}/**/*.js',
-                    '!<%= config.app %>/{src,components}/**/*.spec.js',
-                    '!<%= config.app %>/{src,components}/**/*.mock.js'],
+                    '<%= config.app %>/{components,shared}/**/*.js',
+                    '!<%= config.app %>/{components,shared}/**/*.spec.js',
+                    '!<%= config.app %>/{components,shared}/**/*.mock.js'],
                 tasks: ['injector:scripts']
             },
             injectCss: {
                 files: [
-                    '<%= config.app %>/{src,components}/**/*.css',
+                    '<%= config.app %>/{components,shared}/**/*.css',
                     '<%= config.app %>/{assets}/styles/**/*.css'
                 ],
                 tasks: ['injector:css']
             },
             jsTest: {
                 files: [
-                    '<%= config.app %>/{src,components}/**/*.spec.js',
-                    '<%= config.app %>/{src,components}/**/*.mock.js'
+                    '<%= config.app %>/{components,shared}/**/*.spec.js',
+                    '<%= config.app %>/{components,shared}/**/*.mock.js'
                 ],
                 tasks: ['newer:jshint:all', 'karma']
             },
             injectLess: {
                 files: [
-                    '<%= config.app %>/{src,components}/**/*.less',
+                    '<%= config.app %>/{components,shared}/**/*.less',
                     '<%= config.app %>/{assets}/styles/**/*.less'
                 ],
                 tasks: ['injector:less']
             },
             less: {
                 files: [
-                    '<%= config.app %>/{src,components}/**/*.less',
+                    '<%= config.app %>/{components,shared}/**/*.less',
                     '<%= config.app %>/{assets}/styles/**/*.less'
                 ],
                 tasks: ['less', 'autoprefixer']
@@ -62,11 +62,11 @@ module.exports = function (grunt) {
             livereload: {
                 files: [
                     '{.tmp,<%= config.app %>}/*.{js,html,css}',
-                    '{.tmp,<%= config.app %>}/{src,assets,components}/**/*.css',
-                    '{.tmp,<%= config.app %>}/{src,components}/**/*.html',
-                    '{.tmp,<%= config.app %>}/{src,components}/**/*.js',
-                    '!{.tmp,<%= config.app %>}{src,components}/**/*.spec.js',
-                    '!{.tmp,<%= config.app %>}/{src,components}/**/*.mock.js',
+                    '{.tmp,<%= config.app %>}/{components,assets,shared}/**/*.css',
+                    '{.tmp,<%= config.app %>}/{components,shared}/**/*.html',
+                    '{.tmp,<%= config.app %>}/{components,shared}/**/*.js',
+                    '!{.tmp,<%= config.app %>}{components,shared}/**/*.spec.js',
+                    '!{.tmp,<%= config.app %>}/{components,shared}/**/*.mock.js',
                     '<%= config.app %>/assets/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}'
                 ],
                 options: {
@@ -82,14 +82,14 @@ module.exports = function (grunt) {
                 reporter: require('jshint-stylish')
             },
             all: [
-                '<%= config.app %>/{src,components}/**/*.js',
-                '!<%= config.app %>/{src,components}/**/*.spec.js',
-                '!<%= config.app %>/{src,components}/**/*.mock.js'
+                '<%= config.app %>/{components,shared}/**/*.js',
+                '!<%= config.app %>/{components,shared}/**/*.spec.js',
+                '!<%= config.app %>/{components,shared}/**/*.mock.js'
             ],
             test: {
                 src: [
-                    '<%= config.app %>/{src,components}/**/*.spec.js',
-                    '<%= config.app %>/{src,components}/**/*.mock.js'
+                    '<%= config.app %>/{components,shared}/**/*.spec.js',
+                    '<%= config.app %>/{components,shared}/**/*.mock.js'
                 ]
             }
         },
@@ -251,12 +251,12 @@ module.exports = function (grunt) {
             },
             main: {
                 cwd: '<%= config.app %>',
-                src: ['{src,components}/**/*.html'],
+                src: ['{components,shared}/**/*.html'],
                 dest: '.tmp/templates.js'
             },
             tmp: {
                 cwd: '.tmp',
-                src: ['{src,components}/**/*.html'],
+                src: ['{components,shared}/**/*.html'],
                 dest: '.tmp/tmp-templates.js'
             }
         },
@@ -309,7 +309,7 @@ module.exports = function (grunt) {
             options: {
                 reporter: 'spec'
             },
-            src: ['app/{src,components}/**/*.spec.js']
+            src: ['app/{components,shared}/**/*.spec.js']
         },
 
         // Compiles Less to CSS
@@ -317,9 +317,9 @@ module.exports = function (grunt) {
             options: {
                 paths: [
                     '<%= config.app %>/bower_components',
-                    '<%= config.app %>/src',
+                    '<%= config.app %>/components',
                     '<%= config.app %>/assets',
-                    '<%= config.app %>/components'
+                    '<%= config.app %>/shared'
                 ]
             },
             server: {
@@ -344,10 +344,10 @@ module.exports = function (grunt) {
                 },
                 files: {
                     '<%= config.app %>/index.html': [
-                        ['{.tmp,<%= config.app %>}/{src,components}/**/*.js',
+                        ['{.tmp,<%= config.app %>}/{components,shared}/**/*.js',
                             '!{.tmp,<%= config.app %>}/app.js',
-                            '!{.tmp,<%= config.app %>}/{src,components}/**/*.spec.js',
-                            '!{.tmp,<%= config.app %>}/{src,components}/**/*.mock.js']
+                            '!{.tmp,<%= config.app %>}/{components,shared}/**/*.spec.js',
+                            '!{.tmp,<%= config.app %>}/{components,shared}/**/*.mock.js']
                     ]
                 }
             },
@@ -356,9 +356,9 @@ module.exports = function (grunt) {
             less: {
                 options: {
                     transform: function (filePath) {
-                        filePath = filePath.replace('/app/src/', '');
-                        filePath = filePath.replace('/app/assets/', '');
                         filePath = filePath.replace('/app/components/', '');
+                        filePath = filePath.replace('/app/assets/', '');
+                        filePath = filePath.replace('/app/shared/', '');
                         return '@import \'' + filePath + '\';';
                     },
                     starttag: '// injector',
@@ -366,7 +366,7 @@ module.exports = function (grunt) {
                 },
                 files: {
                     '<%= config.app %>/assets/app.less': [
-                        '<%= config.app %>/{src,assets,components}/**/*.less',
+                        '<%= config.app %>/{components,assets,shared}/**/*.less',
                         '!<%= config.app %>/assets/app.less'
                     ]
                 }
@@ -385,7 +385,7 @@ module.exports = function (grunt) {
                 },
                 files: {
                     '<%= config.app %>/index.html': [
-                        '<%= config.app %>/{src,assets,components}/**/*.css'
+                        '<%= config.app %>/{components,assets,shared}/**/*.css'
                     ]
                 }
             }

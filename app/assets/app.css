@@ -32,11 +32,13 @@ body {
 .x-ng-cloak {
   display: none !important;
 }
+[ui-view] {
+  height: 100%;
+  width: 100%;
+}
 /* Primary content area */
 #content {
   overflow: hidden;
-}
-#content {
   background: #eee;
   padding-left: 30px;
   padding-right: 30px;

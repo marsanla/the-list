@@ -4,12 +4,11 @@
     angular.module('users')
         .service('userService', UserService);
 
-    /**
-     * Users DataService
-     */
+    // Users DataService
     function UserService($q, localStorageService, _, $timeout) {
         var users = [];
 
+        // Common inputs for user model
         var inputs = {
             firstName: {
                 label: 'First name',
@@ -31,7 +30,7 @@
                 label: 'Email',
                 required: true,
                 icon: 'email',
-                pattern: null,
+                pattern: /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i,
                 type: 'email',
                 name: 'email'
             },
@@ -78,6 +77,7 @@
         };
 
 
+        // Check if localstorage is supported and get the user list if exists
         if (localStorageService.isSupported) {
             var usersStorage = localStorageService.get('users');
             if (!_.isEmpty(usersStorage)) {
@@ -85,7 +85,7 @@
             }
         }
 
-        // Promise-based API
+        // Promise-based API (Simulate ajax calls)
         return {
             // Load users
             loadAllUsers: function loadAllUsers() {
@@ -103,11 +103,17 @@
 
             // Delete user
             deleteUser: function deleteUser(user) {
-                var deletedUser = _.remove(users, function (u) {
-                    return _.isEqual(u, user)
-                });
-                users = _(users).value();
-                localStorageService.set('users', users);
+                var deletedUser = {};
+
+                if (user) {
+                    deletedUser = _.remove(users, function (u) {
+                        return _.isEqual(u, user)
+                    });
+                    users = _(users).value();
+                    if (localStorageService.isSupported) {
+                        localStorageService.set('users', users);
+                    }
+                }
 
                 return $q
                     .when(deletedUser);
@@ -115,11 +121,13 @@
 
             // Update users
             updateUser: function updateUser(userList) {
-                if (userList) {
+                if (userList && _.isArray(userList)) {
                     users = userList;
                     $timeout(function () {
                         users = _(users).value();
-                        localStorageService.set('users', users);
+                        if (localStorageService.isSupported) {
+                            localStorageService.set('users', users);
+                        }
                     }, 200);
                 }
 
@@ -131,12 +139,13 @@
             addUser: function addUser(user) {
                 if (user) {
                     users = _(users).push(user).value();
-                    localStorageService.set('users', users);
+                    if (localStorageService.isSupported) {
+                        localStorageService.set('users', users);
+                    }
                 }
 
                 return $q.when(user);
             }
         };
     }
-
 })();

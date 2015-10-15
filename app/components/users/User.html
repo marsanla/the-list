@@ -1,0 +1,22 @@
+<top-nav title="The List"
+         toggle-list="u.toggleList"></top-nav>
+
+<div flex layout="row" layout-fill>
+    <md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2"
+                ng-cloak
+                md-component-id="left"
+                md-is-locked-open="$mdMedia('gt-sm')">
+        <user-list users="u.users"
+                   on-select="u.selectUser"></user-list>
+    </md-sidenav>
+
+    <div flex layout="column" layout-fill tabIndex="-1" role="main" class="md-whiteframe-z2 relative">
+        <user-add></user-add>
+
+        <md-content flex id="content">
+            <user-details on-save="u.saveUsers"
+                          on-delete="u.deleteUser"
+                          user="u.selected"></user-details>
+        </md-content>
+    </div>
+</div>

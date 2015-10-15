@@ -11,6 +11,7 @@ describe('Directive: topNav', function () {
         scope = $rootScope.$new();
     }));
 
+    // Create a simple test
     it('should create a top nav with a title', inject(function ($compile) {
         element = angular.element('<top-nav title="test app"></top-nav>');
         element = $compile(element)(scope);
